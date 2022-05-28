@@ -105,7 +105,7 @@ To add new exception you need to add a new record to the "exceptions" array like
 If you need to disable the service, you can set a new key in your `.env` file. if
 
 ```
-FAILURE_HANDLER_ACTIVE=false
+FAILURE_NOTIFIER_ACTIVE=false
 ```
 
 ### Contribution
