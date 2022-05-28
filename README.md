@@ -5,7 +5,7 @@ This package helps you to track your exceptions and do what you want to do with 
 
 You can specify the amount of time to count the exceptions.
 
-If you had more exceptions than you expect, the service will run your **callback function**, then you can send a notification
+If you had more exceptions than you expect, the service will run your **function**, then you can send a notification
 or whatever you want.
 
 This package uses your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
@@ -82,12 +82,12 @@ You can have a setting for each type of exception. or you can leave it to use th
 To add a new exception you need to add a new record to the "exceptions" array like the below example:
 
 ```
-   \App\Exceptions\GetCredentialFailed::class => [
-       'count' => 5,
-       'interval' => 600,
-       'lock_until' => 600,
-       'active' => true
-   ],
+\App\Exceptions\GetCredentialFailed::class => [
+    'count' => 5,
+    'interval' => 600,
+    'lock_until' => 600,
+    'active' => true
+],
 ```
 
 ### Parameters
