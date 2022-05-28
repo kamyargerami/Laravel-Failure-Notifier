@@ -1,14 +1,14 @@
 # Laravel Failure Notifier
 
-This package helps you to track your exceptions and do what you want to do with them such as sending a **SMS** or and
+This package helps you to track your exceptions and do what you want to do with them such as sending an **SMS** or and
 **Email**.
 
-You can specify amount of time to count the exceptions.
+You can specify the amount of time to count the exceptions.
 
-If you had more exceptions that you expect, service will run your **callback function**, then you can send notification
+If you had more exceptions than you expect, the service will run your **callback function**, then you can send a notification
 or whatever you want.
 
-This package use your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
+This package uses your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
 you to use **Redis** for that.
 
 ## Installation
@@ -19,19 +19,19 @@ You need to add this package to your project by:
 composer require kam2yar/failure-notifier
 ```
 
-Then add the provider to the `config/app.php` file, on the end of "providers" array.
+Then add the provider to the `config/app.php` file, at the end of the "providers" array.
 
 ```
-FailureHandler\FailureHandlerServiceProvider::class
+FailureNotifier\FailureNotifierServiceProvider::class
 ```
 
-After you need to run below command to copy the configuration file to your project directory.
+After you need to run the below command to copy the configuration file to your project directory.
 
 ```
-php artisan vendor:publish --provider="FailureHandler\FailureHandlerServiceProvider"
+php artisan vendor:publish --provider="FailureNotifier\FailureNotifierServiceProvider"
 ```
 
-After this, you are free to remove it from your providers array.
+After this, you are free to remove it from your provider's array.
 
 ### Add the service to the handler
 
@@ -43,7 +43,7 @@ Add the report method to the "Handler" class as below:
     public function report(Throwable $exception)
     {
         if ($this->shouldReport($exception)) {
-            FailureHandler::instance()->capture($exception, (new CustomFailureHandler()));
+            FailureNotifier::instance()->capture($exception, (new CustomFailureHandler()));
         }
 
         parent::report($exception);
@@ -77,9 +77,9 @@ class CustomFailureHandler implements FailureHandler
 
 You can change the service configuration by editing the `config\failure-notifier.php` file.
 
-You can have a setting for each type of exceptions. or you can leave it to use the default configuration.
+You can have a setting for each type of exception. or you can leave it to use the default configuration.
 
-To add new exception you need to add a new record to the "exceptions" array like below example:
+To add a new exception you need to add a new record to the "exceptions" array like the below example:
 
 ```
    \App\Exceptions\GetCredentialFailed::class => [
@@ -92,11 +92,11 @@ To add new exception you need to add a new record to the "exceptions" array like
 
 ### Parameters
 
-**Count:** Minimum count of exceptions need to raise to run your callback function.
+**Count:** Minimum count of exceptions needs to raise to run your callback function.
 
-**Interval:** Seconds to store the count of exceptions in cache.
+**Interval:** Seconds to store the count of exceptions in the cache.
 
-**Lock Until:** Seconds to prevent send duplicate notify
+**Lock Until:** Seconds to prevent sending duplicate notify
 
 **Active:** Enable or disable service for this type of exception
 
@@ -110,4 +110,4 @@ FAILURE_NOTIFIER_ACTIVE=false
 
 ### Contribution
 
-Please contact us before starting to develop new fork and tell us more about the issue or feature.
+Please contact us before starting to develop a new fork and tell us more about the issue or feature.
