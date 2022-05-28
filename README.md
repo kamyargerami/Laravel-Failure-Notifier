@@ -40,14 +40,14 @@ You must add the service to the `Exceptions\Handler.php` file to capture the exc
 Add the report method to the "Handler" class as below:
 
 ```
-    public function report(Throwable $exception)
-    {
-        if ($this->shouldReport($exception)) {
-            FailureNotifier::instance()->capture($exception, (new CustomFailureHandler()));
-        }
-
-        parent::report($exception);
+public function report(Throwable $exception)
+{
+    if ($this->shouldReport($exception)) {
+        FailureNotifier::instance()->capture($exception, (new CustomFailureHandler()));
     }
+
+    parent::report($exception);
+}
 ```
 
 ### Write your custom failure handler
