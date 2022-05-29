@@ -11,6 +11,12 @@ or whatever you want.
 This package uses your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
 you to use **Redis** for that.
 
+## Support
+
+| Version | Laravel |   PHP    |
+| :-----: | :----:  | :------: |
+|   1.3   |  \>= 7  | \>= 7.4  |
+
 ## Installation
 
 You need to add this package to your project by:

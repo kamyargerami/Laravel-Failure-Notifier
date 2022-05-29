@@ -20,7 +20,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "FailureNotifier\\": "src/"
+            "FailureNotifier\\": "src/",
+            "Tests\\": "tests"
         }
     },
     "require": {
@@ -28,7 +29,8 @@
     },
     "require-dev": {
         "laravel/framework": ">=7",
-        "laravel/laravel": ">=7"
+        "laravel/laravel": ">=7",
+        "phpunit/phpunit": "^9.5.10"
     },
     "config": {
         "sort-packages": true
