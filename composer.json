@@ -1,37 +1,46 @@
 {
-    "name": "kam2yar/failure-notifier",
-    "description": "Service that helps you to send notifications for a series of failed exceptions.",
-    "homepage": "https://kamyar.dev",
-    "keywords": [
-        "laravel",
-        "lumen"
-    ],
-    "license": "MIT",
-    "support": {
-        "issues": "https://github.com/kam2yar/Laravel-Failure-Notifier/issues",
-        "source": "https://github.com/kam2yar/Laravel-Failure-Notifier"
-    },
-    "authors": [
-        {
-            "name": "Kamyar Gerami Asl",
-            "email": "kamyargeramiasl@gmail.com",
-            "homepage": "https://kamyar.dev/"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "FailureNotifier\\": "src/"
-        }
-    },
-    "require": {
-        "php": ">=7.4"
-    },
-    "require-dev": {
-        "laravel/framework": ">=7",
-        "laravel/laravel": ">=7"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "minimum-stability": "dev"
+  "name": "kam2yar/failure-notifier",
+  "description": "Service that helps you to send notifications for a series of failed exceptions.",
+  "homepage": "https://kamyar.dev",
+  "keywords": [
+    "laravel",
+    "lumen"
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/kam2yar/Laravel-Failure-Notifier/issues",
+    "source": "https://github.com/kam2yar/Laravel-Failure-Notifier"
+  },
+  "authors": [
+    {
+      "name": "Kamyar Gerami Asl",
+      "email": "kamyargeramiasl@gmail.com",
+      "homepage": "https://kamyar.dev/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "FailureNotifier\\": "src/",
+      "FailureNotifier\\Tests\\": "tests"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "illuminate/contracts": "^7.0|^8.0|^9.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^5.0|^6.0|^7.0",
+    "phpunit/phpunit": "6|^7|^8|^9"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "FailureNotifier\\FailureNotifierServiceProvider"
+      ]
+    }
+  }
 }

@@ -19,10 +19,14 @@ You need to add this package to your project by:
 composer require kam2yar/failure-notifier
 ```
 
-Then add the provider to the `config/app.php` file, at the end of the "providers" array.
+Optional: The service provider will automatically get registered. Or you may manually add the service provider in your
+`config/app.php` file:
 
 ```
-FailureNotifier\FailureNotifierServiceProvider::class
+'providers' => [
+    // ...
+    FailureNotifier\FailureNotifierServiceProvider::class
+]
 ```
 
 After you need to run the below command to copy the configuration file to your project directory.
@@ -52,7 +56,8 @@ public function report(Throwable $exception)
 
 ### Write your custom failure handler
 
-You must write a new class in your project and pass it to the capture method that implements the `FailureHandler` interface:
+You must write a new class in your project and pass it to the capture method that implements the `FailureHandler`
+interface:
 
 ```
 use FailureNotifier\FailureHandler;
@@ -82,17 +87,17 @@ You can have a setting for each type of exception. or you can leave it to use th
 To add a new exception you need to add a new record to the "exceptions" array like the below example:
 
 ```
-\App\Exceptions\GetCredentialFailed::class => [
-    'count' => 5,
-    'interval' => 600,
-    'lock_until' => 600,
-    'active' => true
-],
+   \App\Exceptions\ExampleException::class => [
+       'count' => 5,
+       'interval' => 600,
+       'lock_until' => 600,
+       'active' => true
+   ],
 ```
 
 ### Parameters
 
-**Count:** Minimum count of exceptions needs to raise to run your callback function.
+**Count:** Minimum count of exceptions needs to raise to run your function.
 
 **Interval:** Seconds to store the count of exceptions in the cache.
 
@@ -102,7 +107,7 @@ To add a new exception you need to add a new record to the "exceptions" array li
 
 ### Deactivate the service
 
-If you need to disable the service, you can set a new key in your `.env` file. if
+If you need to disable the service, you can set a new key in your `.env` file.
 
 ```
 FAILURE_NOTIFIER_ACTIVE=false
@@ -110,4 +115,4 @@ FAILURE_NOTIFIER_ACTIVE=false
 
 ### Contribution
 
-Please contact us before starting to develop a new fork and tell us more about the issue or feature.
+Please tell me about the feature or issues before start developing it. Thank you.
