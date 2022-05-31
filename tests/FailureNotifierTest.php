@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace FailureNotifier\Tests;
 
 use FailureNotifier\FailureNotifier;
-use PHPUnit\Framework\TestCase;
+use FailureNotifier\Tests\Classes\CustomFailureHandler;
 
-final class FailureNotifierTest extends TestCase
+class FailureNotifierTest extends TestCase
 {
     /**
      * @covers
@@ -19,11 +19,16 @@ final class FailureNotifierTest extends TestCase
         $this->assertInstanceOf(FailureNotifier::class, $object);
     }
 
-    public function test_set_function()
+    /**
+     * @covers
+     */
+    public function test_capture_function()
     {
         $exception = new \Exception('Test');
 
         $object = FailureNotifier::instance();
-        $object->set($exception);
+        $object->capture($exception, (new CustomFailureHandler()));
+
+        $this->assertEquals(true, $object->isActive());
     }
 }
