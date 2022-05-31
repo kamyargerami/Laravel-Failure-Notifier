@@ -5,17 +5,11 @@ This package helps you to track your exceptions and do what you want to do with 
 
 You can specify the amount of time to count the exceptions.
 
-If you had more exceptions than you expect, the service will run your **callback function**, then you can send a
-notification or whatever you want.
+If you had more exceptions than you expect, the service will run your **function**, then you can send a notification
+or whatever you want.
 
 This package uses your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
 you to use **Redis** for that.
-
-## Support
-
-| Version | Laravel |   PHP    |
-| :-----: | :----:  | :------: |
-|   1.3   |  \>= 7  | \>= 7.4  |
 
 ## Installation
 
