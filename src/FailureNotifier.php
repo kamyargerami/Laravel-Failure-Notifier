@@ -29,20 +29,6 @@ class FailureNotifier
      */
     protected string $cacheName;
 
-    /**
-     * @var self
-     */
-    protected static $instance;
-
-    public static function instance(): self
-    {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
     public function capture(Throwable $exception): void
     {
         $this->set($exception);
@@ -108,9 +94,9 @@ class FailureNotifier
         return Cache::has($this->cacheName . '_lock');
     }
 
-    public function getCount(): mixed
+    public function getCount(): int
     {
-        return Cache::get($this->cacheName);
+        return Cache::get($this->cacheName) ?: 0;
     }
 
     public function mustNotify(): bool
