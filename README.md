@@ -72,6 +72,7 @@ class FailureHandler implements FailureHandlerInterface
 
         switch ($exceptionClass) {
             default:
+                Log::warning('Handle the default exception.', ['class' => $exceptionClass]);
                 break;
         }
     }

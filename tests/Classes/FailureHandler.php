@@ -3,6 +3,7 @@
 namespace FailureNotifier\Tests\Classes;
 
 use FailureNotifier\FailureHandlerInterface;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class FailureHandler implements FailureHandlerInterface
@@ -13,6 +14,7 @@ class FailureHandler implements FailureHandlerInterface
 
         switch ($exceptionClass) {
             default:
+                Log::warning('Handle the default exception.', ['class' => $exceptionClass]);
                 break;
         }
     }
