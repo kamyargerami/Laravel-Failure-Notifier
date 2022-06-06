@@ -4,6 +4,7 @@ namespace FailureNotifier;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class FailureNotifier
@@ -42,7 +43,7 @@ class FailureNotifier
         return self::$instance;
     }
 
-    public function capture(Throwable $exception, FailureHandler $handler): void
+    public function capture(Throwable $exception): void
     {
         $this->set($exception);
 
@@ -56,7 +57,12 @@ class FailureNotifier
             return;
         }
 
-        $handler->handle($exception, $this->getCount());
+        if (!app()->bound(FailureHandlerInterface::class)) {
+            Log::warning('Failure notifier could not work without specify handler.');
+            return;
+        }
+
+        app(FailureHandlerInterface::class)->handleException($exception, $this->getCount());
 
         $this->lock();
         $this->resetCount();

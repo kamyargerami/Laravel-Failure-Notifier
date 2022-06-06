@@ -2,12 +2,12 @@
 
 namespace FailureNotifier\Tests\Classes;
 
-use FailureNotifier\FailureHandler;
+use FailureNotifier\FailureHandlerInterface;
 use Throwable;
 
-class CustomFailureHandler implements FailureHandler
+class FailureHandler implements FailureHandlerInterface
 {
-    public function handle(Throwable $exception, int $failureCount)
+    public function handleException(Throwable $exception, int $failureCount)
     {
         $exceptionClass = get_class($exception);
 

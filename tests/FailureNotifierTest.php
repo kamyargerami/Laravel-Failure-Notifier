@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace FailureNotifier\Tests;
 
+use FailureNotifier\FailureHandlerInterface;
 use FailureNotifier\FailureNotifier;
-use FailureNotifier\Tests\Classes\CustomFailureHandler;
+use FailureNotifier\Tests\Classes\FailureHandler;
 
 class FailureNotifierTest extends TestCase
 {
@@ -26,8 +27,12 @@ class FailureNotifierTest extends TestCase
     {
         $exception = new \Exception('Test');
 
+        app()->singleton(FailureHandlerInterface::class, function ($app) {
+            return new FailureHandler();
+        });
+
         $object = FailureNotifier::instance();
-        $object->capture($exception, (new CustomFailureHandler()));
+        $object->capture($exception);
 
         $this->assertEquals(true, $object->isActive());
     }
