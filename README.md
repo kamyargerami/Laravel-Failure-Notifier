@@ -61,7 +61,8 @@ the `FailureHandlerInterface`
 interface:
 
 ```
-use FailureNotifier\FailureHandlerInterface;
+use FailureNotifier\FailureHandlerInterface;.
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class FailureHandler implements FailureHandlerInterface
@@ -72,6 +73,7 @@ class FailureHandler implements FailureHandlerInterface
 
         switch ($exceptionClass) {
             default:
+                Log::warning('Handle default exception', ['class' => $exceptionClass]);
                 break;
         }
     }
