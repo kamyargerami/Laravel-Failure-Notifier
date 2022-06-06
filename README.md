@@ -47,7 +47,7 @@ Add the report method to the "Handler" class as below:
 public function report(Throwable $exception)
 {
     if ($this->shouldReport($exception)) {
-        FailureNotifier::instance()->capture($exception);
+        app(FailureNotifier::class)->capture($exception);
     }
 
     parent::report($exception);
