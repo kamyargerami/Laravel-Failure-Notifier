@@ -5,8 +5,8 @@ This package helps you to track your exceptions and do what you want to do with 
 
 You can specify the amount of time to count the exceptions.
 
-If you had more exceptions than you expect, the service will run your **function**, then you can send a notification
-or whatever you want.
+If you had more exceptions than you expect, the service will run your **function**, then you can send a notification or
+whatever you want.
 
 This package uses your default cache driver to count the exceptions. You are free to choose the driver, but we suggest
 you to use **Redis** for that.
@@ -47,7 +47,7 @@ Add the report method to the "Handler" class as below:
 public function report(Throwable $exception)
 {
     if ($this->shouldReport($exception)) {
-        FailureNotifier::instance()->capture($exception, (new CustomFailureHandler()));
+        FailureNotifier::instance()->capture($exception);
     }
 
     parent::report($exception);
@@ -56,25 +56,42 @@ public function report(Throwable $exception)
 
 ### Write your custom failure handler
 
-You must write a new class in your project and pass it to the capture method that implements the `FailureHandler`
+You must write a new class in your project and pass it to the capture method that implements
+the `FailureHandlerInterface`
 interface:
 
 ```
-use FailureNotifier\FailureHandler;
+use FailureNotifier\FailureHandlerInterface;
 use Throwable;
 
-class CustomFailureHandler implements FailureHandler
+class FailureHandler implements FailureHandlerInterface
 {
-    public function handle(Throwable $exception, int $failureCount){
+    public function handleException(Throwable $exception, int $failureCount)
+    {
         $exceptionClass = get_class($exception);
 
-        switch ($exceptionClass){
-            // Add your exception class names to send custom notify
+        switch ($exceptionClass) {
             default:
-                // TODO send sms or email
                 break;
         }
     }
+}
+```
+
+### Bind your custom handler to your application
+
+Now you need to add your custom failure handler to your `App\Providers\AppServiceProvider` file.
+
+Add the bellow code to the boot function:
+
+```
+public function boot()
+{
+    $this->app->singleton(FailureHandlerInterface::class, function ($app) {
+        // Your custom failure handler
+        
+        return new FailureHandler();       
+    });
 }
 ```
 
