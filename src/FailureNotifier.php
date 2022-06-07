@@ -43,11 +43,6 @@ class FailureNotifier
             return;
         }
 
-        if (!app()->bound(FailureHandlerInterface::class)) {
-            Log::warning('Failure notifier could not work without specify handler.');
-            return;
-        }
-
         app(FailureHandlerInterface::class)->handleException($exception, $this->getCount());
 
         $this->lock();
