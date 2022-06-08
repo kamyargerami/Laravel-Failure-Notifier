@@ -49,7 +49,7 @@ class FailureNotifier
         $this->resetCount();
     }
 
-    public function set(Throwable $exception)
+    public function set(Throwable $exception): void
     {
         $this->exception = $exception;
         $this->exceptionClass = get_class($this->exception);
