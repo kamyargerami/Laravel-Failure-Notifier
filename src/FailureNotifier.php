@@ -43,10 +43,10 @@ class FailureNotifier
             return;
         }
 
-        app(FailureHandlerInterface::class)->handleException($exception, $this->getCount());
-
         $this->lock();
         $this->resetCount();
+        
+        app(FailureHandlerInterface::class)->handleException($exception, $this->getCount());
     }
 
     public function set(Throwable $exception): void
