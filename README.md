@@ -1,6 +1,6 @@
 # Laravel Failure Notifier
 
-This package helps you to track your exceptions and do what you want to do with them such as sending an **SMS** or and
+This package helps you to track your exceptions and do what you want to do with them such as sending an **SMS** or an
 **Email**.
 
 You can specify the amount of time to count the exceptions.
